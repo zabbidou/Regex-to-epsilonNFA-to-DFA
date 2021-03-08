@@ -3,7 +3,7 @@ Homework for Formal Languages and Automata. We had to use the code from the prev
 
 # Romanian readme
 
-## RE $\rightarrow$ NFA
+## RE -> NFA
 
 Am ales pentru implementarea mea să generez un parser prin ANTLR4, cu
 design pattern-ul `visitor`, exact ca în exemplul de la curs.
@@ -24,7 +24,7 @@ inner: OPEN regex CLOSED;
 Pe scurt, am făcut o ierarhie a operațiilor, pentru a ne asigura că se respectă
 ordinea lor:
 
-() $\rightarrow$ star $\rightarrow$ concat $\rightarrow$ reunion
+() -> star -> concat -> reunion
 
 Pentru a face parantezele să fie primele, le-am trecut ca fiind `atom`. Acestea
 se vor evalua primele deoarece sunt la *"baza"* arborelui de parcurgere.
@@ -55,26 +55,26 @@ acceptă doar acea literă (în cazul de la curs, returnăm numărul sub formă 
 De exemplu, am avea visitVariable care primește litera *'a'*. Ce returnăm va avea forma:
 
 &nbsp;
-![](cazul_de_baza.png)\
+![](photos/cazul_de_baza.png)\
 &nbsp;
 
 Pentru **concatenare**, primim 2 NFA-uri (venite practic din recursivitate)
 și le prelucrăm astfel:
 
 &nbsp;
-![](concat.png)\
+![](photos/concat.png)\
 &nbsp;
 
 Pentru **reuniune**, adică simbolul `'|'`, avem regula:
 
 &nbsp;
-![](or.png)\
+![](photos/or.png)\
 &nbsp;
 
 Iar pentru **Kleene star** avem:
 
 &nbsp;
-![](star.png)\
+![](photos/star.png)\
 &nbsp;
 
 ### Prelucrarea NFA-urilor
@@ -115,7 +115,8 @@ lor N).
 Pentru fiecare operator, am definit o funcție a clasei care returnează
 NFA-ul rezultat.
 
-Pentru **Kleene star**, de exemplu, funcția prelucrează doar NFA-ul `self`. Îi offseteaza stările cu 1 (deoarece adăugăm o stare la început
+Pentru **Kleene star**, de exemplu, funcția prelucrează doar NFA-ul `self`. 
+Îi offseteaza stările cu 1 (deoarece adăugăm o stare la început
 și una la final) și leagă noile stări cu epsilon tranziții de stările
 inițiale ale NFA-ului.
 
@@ -130,10 +131,9 @@ primului NFA). Al doilea NFA îl offsetam cu `nfa1.nrOfStates - 1`,
 deoarece `nfa1.final` trebuie să coincidă cu `nfa2.start`.
 Setăm starea nouă finală că fiind ultima stare a NFA-ului 2.
 
-# NFA $\rightarrow$ DFA
+# NFA -> DFA
 
-Am atașat și README-ul pentru tema 2 (*NFAtoDFA.pdf*), care intră în mai multe detalii
-despre transformarea NFA $\rightarrow$ DFA.
+Codul si readme-ul in romana pentru partea asta este [aici](https://github.com/zabbidou/epsilon-NFA-to-DFA)
 
 Pe scurt, algoritmul este:
 
